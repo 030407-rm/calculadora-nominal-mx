@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Salario Neto México 2026 | ISR e IMSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+    <div class="container mx-auto px-4 py-10 max-w-2xl">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl font-extrabold text-blue-700">Calculadora de Sueldo Neto 2026</h1>
+            <p class="text-gray-500">Calcula cuánto recibirás después de impuestos (ISR e IMSS)</p>
+        </header>
+
+        <div class="w-full h-24 bg-gray-200 mb-8 flex items-center justify-center border-dashed border-2 border-gray-300">
+            <span class="text-gray-400 text-xs text-center">Espacio para Anuncios de Google AdSense<br>(Este espacio te genera dinero por cada 1,000 visitas)</span>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
+            <div class="mb-6">
+                <label class="block text-sm font-bold mb-2">Sueldo Mensual Bruto (Antes de impuestos):</label>
+                <input type="number" id="bruto" placeholder="Ej: 15000" class="w-full p-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:outline-none text-lg">
+            </div>
+            
+            <button onclick="calcular()" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg">CALCULAR MI NETO</button>
+
+            <div id="resultado" class="mt-8 hidden space-y-4">
+                <div class="flex justify-between border-b pb-2"><span>Retención ISR:</span><span id="isr" class="font-bold text-red-500"></span></div>
+                <div class="flex justify-between border-b pb-2"><span>Cuota IMSS:</span><span id="imss" class="font-bold text-red-500"></span></div>
+                <div class="flex justify-between pt-4"><span class="text-xl font-bold">Sueldo Neto Mensual:</span><span id="neto" class="text-2xl font-bold text-green-600"></span></div>
+            </div>
+        </div>
+
+        <div class="mt-12 text-sm text-gray-600 leading-relaxed space-y-4">
+            <h2 class="text-xl font-bold text-gray-800">¿Cómo se calcula el ISR en 2026?</h2>
+            <p>El Impuesto Sobre la Renta (ISR) en México se aplica de forma progresiva. Según las tablas vigentes de 2026, mientras más ganas, mayor es el porcentaje de retención...</p>
+            <h2 class="text-xl font-bold text-gray-800">Importancia de conocer tu salario neto</h2>
+            <p>Conocer tu salario real te permite planificar mejor tus finanzas, solicitar créditos bancarios y entender tus prestaciones de ley...</p>
+        </div>
+    </div>
+
+    <script>
+        function calcular() {
+            let bruto = document.getElementById('bruto').value;
+            if(bruto > 0) {
+                // Lógica simplificada de ISR 2026 (IA estimada)
+                let isr = bruto * 0.12; 
+                let imss = bruto * 0.025;
+                let neto = bruto - isr - imss;
+
+                document.getElementById('isr').innerText = "- $" + isr.toFixed(2);
+                document.getElementById('imss').innerText = "- $" + imss.toFixed(2);
+                document.getElementById('neto').innerText = "$" + neto.toFixed(2);
+                document.getElementById('resultado').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
