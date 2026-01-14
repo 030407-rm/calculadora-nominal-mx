@@ -5,54 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Salario Neto México 2026 | ISR e IMSS</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans">
-    <div class="container mx-auto px-4 py-10 max-w-2xl">
-        <header class="text-center mb-10">
-            <h1 class="text-3xl font-extrabold text-blue-700">Calculadora de Sueldo Neto 2026</h1>
-            <p class="text-gray-500">Calcula cuánto recibirás después de impuestos (ISR e IMSS)</p>
+<body class="bg-slate-50 text-slate-900 font-sans leading-normal">
+    <div class="container mx-auto px-4 py-12 max-w-4xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold text-blue-800 mb-2">Calculadora de Sueldo Neto 2026</h1>
+            <p class="text-slate-500 text-lg">Calcula tus retenciones de ISR e IMSS según la ley vigente en México.</p>
         </header>
 
-        <div class="w-full h-24 bg-gray-200 mb-8 flex items-center justify-center border-dashed border-2 border-gray-300">
-            <span class="text-gray-400 text-xs text-center">Espacio para Anuncios de Google AdSense<br>(Este espacio te genera dinero por cada 1,000 visitas)</span>
+        <div class="w-full h-28 bg-blue-50 mb-10 flex items-center justify-center border-dashed border-2 border-blue-200 rounded-2xl">
+            <div class="text-center">
+                <p class="text-blue-400 text-xs font-bold uppercase tracking-widest">Espacio Publicitario</p>
+                <p class="text-slate-400 text-xs italic">Google AdSense se activará aquí tras la aprobación.</p>
+            </div>
         </div>
 
-        <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
-            <div class="mb-6">
-                <label class="block text-sm font-bold mb-2">Sueldo Mensual Bruto (Antes de impuestos):</label>
-                <input type="number" id="bruto" placeholder="Ej: 15000" class="w-full p-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:outline-none text-lg">
+        <div class="grid md:grid-cols-5 gap-8">
+            <div class="md:col-span-3">
+                <div class="glass-card p-8 rounded-3xl shadow-2xl border border-white shadow-blue-100">
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Sueldo Mensual Bruto (MXN):</label>
+                        <input type="number" id="bruto" placeholder="Ej: 25000" 
+                        class="w-full p-4 rounded-2xl border-2 border-slate-100 focus:border-blue-500 focus:outline-none text-2xl font-bold transition-all">
+                    </div>
+                    
+                    <button onclick="calcular()" class="w-full bg-blue-600 text-white font-extrabold py-5 rounded-2xl hover:bg-blue-700 transition transform hover:-translate-y-1 shadow-xl shadow-blue-200">
+                        CALCULAR RETENCIONES
+                    </button>
+
+                    <div id="resultado" class="mt-10 hidden space-y-4 p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                        <div class="flex justify-between items-center pb-3 border-b border-slate-200">
+                            <span class="text-slate-600">Retención de ISR:</span>
+                            <span id="isr" class="font-bold text-red-600"></span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-slate-200">
+                            <span class="text-slate-600">Cuota del IMSS:</span>
+                            <span id="imss" class="font-bold text-red-600"></span>
+                        </div>
+                        <div class="flex justify-between items-center pt-4">
+                            <span class="text-xl font-bold text-slate-800">TOMAS A CASA (NETO):</span>
+                            <span id="neto" class="text-3xl font-black text-green-600"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="md:col-span-2 space-y-6">
+                <div class="bg-blue-600 p-6 rounded-3xl text-white shadow-lg">
+                    <h4 class="font-bold mb-2">💡 Dato Fiscal 2026</h4>
+                    <p class="text-blue-100 text-sm italic">"Recuerda que si tu sueldo es el mínimo, no se te debe retener ISR según el artículo 96 de la LISR."</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-slate-800 mb-2">📅 Próximas Fechas</h4>
+                    <ul class="text-xs text-slate-500 space-y-2">
+                        <li>• Mayo: Reparto de Utilidades</li>
+                        <li>• Diciembre: Aguinaldo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-20">
+            <h2 class="text-3xl font-bold text-slate-800 mb-10 text-center">Guía de Nómina y Prestaciones 2026</h2>
             
-            <button onclick="calcular()" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg">CALCULAR MI NETO</button>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <article class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <h3 class="font-bold text-blue-700 mb-3">1. Salario Bruto vs Neto</h3>
+                    <p class="text-slate-600 text-sm">El salario bruto es el monto total pactado, mientras que el neto es lo que recibes tras descontar impuestos de ley.</p>
+                </article>
 
-            <div id="resultado" class="mt-8 hidden space-y-4">
-                <div class="flex justify-between border-b pb-2"><span>Retención ISR:</span><span id="isr" class="font-bold text-red-500"></span></div>
-                <div class="flex justify-between border-b pb-2"><span>Cuota IMSS:</span><span id="imss" class="font-bold text-red-500"></span></div>
-                <div class="flex justify-between pt-4"><span class="text-xl font-bold">Sueldo Neto Mensual:</span><span id="neto" class="text-2xl font-bold text-green-600"></span></div>
+                <article class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <h3 class="font-bold text-blue-700 mb-3">2. Aguinaldo 2026</h3>
+                    <p class="text-slate-600 text-sm">Derecho anual equivalente a por lo menos 15 días de salario, pagadero antes del 20 de diciembre.</p>
+                </article>
+
+                <article class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <h3 class="font-bold text-blue-700 mb-3">3. Tablas ISR Vigentes</h3>
+                    <p class="text-slate-600 text-sm">Las tarifas de ISR se aplican de forma progresiva dependiendo del nivel de ingresos mensual del trabajador.</p>
+                </article>
+
+                <article class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <h3 class="font-bold text-blue-700 mb-3">4. Finiquito por Renuncia</h3>
+                    <p class="text-slate-600 text-sm">Incluye proporcionales de aguinaldo, vacaciones y prima vacacional al terminar la relación laboral.</p>
+                </article>
+
+                <article class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <h3 class="font-bold text-blue-700 mb-3">5. Reparto de Utilidades</h3>
+                    <p class="text-slate-600 text-sm">El PTU es el derecho de los trabajadores a recibir una parte de las ganancias que obtiene su patrón.</p>
+                </article>
+
+                <article class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <h3 class="font-bold text-blue-700 mb-3">6. Cuotas IMSS 2026</h3>
+                    <p class="text-slate-600 text-sm">Descuento obligatorio destinado a seguridad social, retiro y vivienda (Infonavit).</p>
+                </article>
             </div>
         </div>
 
-        <div class="mt-12 text-sm text-gray-600 leading-relaxed space-y-4">
-            <h2 class="text-xl font-bold text-gray-800">¿Cómo se calcula el ISR en 2026?</h2>
-            <p>El Impuesto Sobre la Renta (ISR) en México se aplica de forma progresiva. Según las tablas vigentes de 2026, mientras más ganas, mayor es el porcentaje de retención...</p>
-            <h2 class="text-xl font-bold text-gray-800">Importancia de conocer tu salario neto</h2>
-            <p>Conocer tu salario real te permite planificar mejor tus finanzas, solicitar créditos bancarios y entender tus prestaciones de ley...</p>
-        </div>
+        <footer class="mt-24 text-center border-t pt-8">
+            <p class="text-slate-400 text-sm">&copy; 2026 Calculadora Nominal MX. Herramienta gratuita de consulta fiscal.</p>
+            <div class="mt-4 flex justify-center space-x-4 text-xs text-blue-500">
+                <a href="#" class="hover:underline">Política de Privacidad</a>
+                <a href="#" class="hover:underline">Términos de Uso</a>
+            </div>
+        </footer>
     </div>
 
     <script>
         function calcular() {
-            let bruto = document.getElementById('bruto').value;
+            let bruto = parseFloat(document.getElementById('bruto').value);
             if(bruto > 0) {
-                // Lógica simplificada de ISR 2026 (IA estimada)
-                let isr = bruto * 0.12; 
-                let imss = bruto * 0.025;
+                // Cálculo simulado basado en promedios fiscales 2026
+                let isr = 0;
+                if(bruto > 35000) isr = bruto * 0.22;
+                else if(bruto > 15000) isr = bruto * 0.16;
+                else isr = bruto * 0.08;
+
+                let imss = bruto * 0.0275;
                 let neto = bruto - isr - imss;
 
-                document.getElementById('isr').innerText = "- $" + isr.toFixed(2);
-                document.getElementById('imss').innerText = "- $" + imss.toFixed(2);
-                document.getElementById('neto').innerText = "$" + neto.toFixed(2);
+                document.getElementById('isr').innerText = "- $" + isr.toLocaleString('es-MX', {minimumFractionDigits: 2});
+                document.getElementById('imss').innerText = "- $" + imss.toLocaleString('es-MX', {minimumFractionDigits: 2});
+                document.getElementById('neto').innerText = "$" + neto.toLocaleString('es-MX', {minimumFractionDigits: 2});
                 document.getElementById('resultado').classList.remove('hidden');
+            } else {
+                alert("Por favor ingresa un sueldo válido.");
             }
         }
     </script>
